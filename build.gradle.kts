@@ -24,10 +24,13 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation:3.1.4")
     implementation("org.flywaydb:flyway-core")
     compileOnly("org.projectlombok:lombok")
+    compileOnly("org.flywaydb:flyway-mysql")
+    implementation("org.modelmapper:modelmapper:3.2.0")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("com.mysql:mysql-connector-j:8.4.0")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
