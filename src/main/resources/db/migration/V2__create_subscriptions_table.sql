@@ -1,4 +1,4 @@
-create table subscriptions(
+create table if not exists subscriptions(
     id bigint auto_increment primary key,
     userId bigint,
     query varchar(255),
