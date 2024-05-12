@@ -20,6 +20,9 @@ public class UserEntity {
     @Column("username")
     private String username;
 
+    @Column("password")
+    private String password;
+
     @Column("telegramChatId")
     private Long telegramChatId;
 }

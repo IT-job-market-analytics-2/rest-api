@@ -1,6 +1,7 @@
 package dev.lxqtpr.linda.restapi.core.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,6 +17,29 @@ public class CustomControllerAdvice{
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ExceptionBody handleResourceNotFound(ResourceNotFoundException e) {
         return new ExceptionBody(e.getMessage(), HttpStatus.NOT_FOUND.value());
+    }
+
+    @ExceptionHandler(PasswordDoesNotMatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionBody handleImageUpload(PasswordDoesNotMatchException e) {
+        return new ExceptionBody(e.getMessage(), HttpStatus.BAD_REQUEST.value());
+    }
+
+    @ExceptionHandler(JwtException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ExceptionBody handleJwtException(JwtException e) {
+        return new ExceptionBody(e.getMessage(), HttpStatus.FORBIDDEN.value());
+    }
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ExceptionBody handleAuthenticationExceptions(AuthenticationException e) {
+        return new ExceptionBody(e.getMessage(), HttpStatus.FORBIDDEN.value());
+    }
+
+    @ExceptionHandler(UserAlreadyExistException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ExceptionBody handleUserAlreadyExistException(final Exception e) {
+        return new ExceptionBody(e.getMessage(), HttpStatus.CONFLICT.value());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)

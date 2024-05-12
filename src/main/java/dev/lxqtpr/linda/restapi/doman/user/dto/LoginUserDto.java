@@ -1,10 +1,11 @@
 package dev.lxqtpr.linda.restapi.doman.user.dto;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class CreateUserDto {
+public class LoginUserDto {
     @NotEmpty(message = "Username is mandatory")
     @Size(min = 3, message = "Username can not be shorter than 3 characters")
     @Size(max = 50, message = "Username can not be longer than 50 characters")

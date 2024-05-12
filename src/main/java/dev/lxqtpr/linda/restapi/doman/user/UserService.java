@@ -8,9 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -19,12 +16,6 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
-
-    public ResponseUserDto createUser(CreateUserDto createUserDto) {
-        var userToSave = modelMapper.map(createUserDto, UserEntity.class);
-        return modelMapper.map(userRepository.save(userToSave), ResponseUserDto.class);
-    }
-
 
     public List<ResponseUserDto> getUserByQuery(String subscribedTo) {
         var users = userRepository.findByQuery(subscribedTo);
