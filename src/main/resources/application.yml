@@ -5,6 +5,11 @@ spring:
     username: analytics_service
     password: password
 
+available:
+  queries:
+    - Java
+    - Kotlin
+
 security:
   jwt:
     accessSecret: "qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w=="
