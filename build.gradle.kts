@@ -26,6 +26,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation:3.1.4")
     implementation("org.springframework.boot:spring-boot-starter-security:3.2.3")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     implementation("org.flywaydb:flyway-core")
     compileOnly("org.projectlombok:lombok")
     compileOnly("org.flywaydb:flyway-mysql")
@@ -40,5 +41,6 @@ dependencies {
 }
 
 tasks.withType<Test> {
+    jvmArgs("-XX:+EnableDynamicAgentLoading")
     useJUnitPlatform()
 }

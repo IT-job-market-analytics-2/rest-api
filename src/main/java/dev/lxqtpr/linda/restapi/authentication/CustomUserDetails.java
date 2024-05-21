@@ -18,6 +18,10 @@ public class CustomUserDetails implements UserDetails {
         return List.of();
     }
 
+    public Long getUserId(){
+        return user.getId();
+    }
+
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -26,6 +30,9 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return user.getUsername();
+    }
+    public Long getTelegramChatId(){
+        return user.getTelegramChatId();
     }
 
     @Override

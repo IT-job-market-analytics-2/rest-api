@@ -30,6 +30,11 @@ public class CustomControllerAdvice{
     public ExceptionBody handleJwtException(JwtException e) {
         return new ExceptionBody(e.getMessage(), HttpStatus.FORBIDDEN.value());
     }
+    @ExceptionHandler(QueryDoesNotSupportException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionBody handleQueryDoesNotSupportException(QueryDoesNotSupportException e) {
+        return new ExceptionBody(e.getMessage(), HttpStatus.BAD_REQUEST.value());
+    }
     @ExceptionHandler(AuthenticationException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ExceptionBody handleAuthenticationExceptions(AuthenticationException e) {
@@ -38,8 +43,13 @@ public class CustomControllerAdvice{
 
     @ExceptionHandler(UserAlreadyExistException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ExceptionBody handleUserAlreadyExistException(final Exception e) {
+    public ExceptionBody handleUserAlreadyExistException(Exception e) {
         return new ExceptionBody(e.getMessage(), HttpStatus.CONFLICT.value());
+    }
+    @ExceptionHandler(ValueAlreadyExistException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionBody handleValueAlreadyExistException(Exception e) {
+        return new ExceptionBody(e.getMessage(), HttpStatus.BAD_REQUEST.value());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
