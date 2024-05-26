@@ -4,11 +4,17 @@ spring:
     url: "jdbc:mysql://localhost/analytics_db"
     username: analytics_service
     password: password
-
 available:
   queries:
     - Java
     - Kotlin
+    - Android
+    - Javascript
+    - React
+    - PHP
+    - iOS
+    - .NET
+    - Python
 
 security:
   jwt:

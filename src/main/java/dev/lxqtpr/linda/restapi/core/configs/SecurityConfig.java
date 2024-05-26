@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth ->
                             auth.requestMatchers(WHITE_LIST_URL).permitAll()
                                     .anyRequest()
-                                    .authenticated()
+                                    .permitAll()
                 )
                 .exceptionHandling(exceptionHandler ->
                         exceptionHandler.authenticationEntryPoint(customAuthenticationEntryPoint)

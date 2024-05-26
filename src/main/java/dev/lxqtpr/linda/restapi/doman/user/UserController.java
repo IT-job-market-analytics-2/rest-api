@@ -19,8 +19,8 @@ public class UserController {
     private final UserService userService;
     private final SecurityService securityService;
 
-    @GetMapping()
-    public List<ResponseUserDto> getUsersByQuery(@RequestParam("subscribedTo") String subscribedTo){
+    @GetMapping
+    public List<ResponseUserDto> getUsersByQuery(@RequestParam("query") String subscribedTo){
         return userService.getUsersByQuery(subscribedTo);
     }
     @GetMapping("/getUserInfo")

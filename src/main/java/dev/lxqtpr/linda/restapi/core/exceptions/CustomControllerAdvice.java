@@ -26,9 +26,9 @@ public class CustomControllerAdvice{
     }
 
     @ExceptionHandler(JwtException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ExceptionBody handleJwtException(JwtException e) {
-        return new ExceptionBody(e.getMessage(), HttpStatus.FORBIDDEN.value());
+        return new ExceptionBody(e.getMessage(), HttpStatus.UNAUTHORIZED.value());
     }
     @ExceptionHandler(QueryDoesNotSupportException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -36,9 +36,9 @@ public class CustomControllerAdvice{
         return new ExceptionBody(e.getMessage(), HttpStatus.BAD_REQUEST.value());
     }
     @ExceptionHandler(AuthenticationException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ExceptionBody handleAuthenticationExceptions(AuthenticationException e) {
-        return new ExceptionBody(e.getMessage(), HttpStatus.FORBIDDEN.value());
+        return new ExceptionBody(e.getMessage(), HttpStatus.UNAUTHORIZED.value());
     }
 
     @ExceptionHandler(UserAlreadyExistException.class)
