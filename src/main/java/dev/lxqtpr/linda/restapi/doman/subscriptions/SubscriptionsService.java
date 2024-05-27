@@ -8,7 +8,6 @@ import dev.lxqtpr.linda.restapi.doman.subscriptions.dto.ResponseSubscriptionsDto
 import dev.lxqtpr.linda.restapi.doman.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.conversion.DbActionExecutionException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

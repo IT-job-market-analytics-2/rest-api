@@ -2,7 +2,7 @@ package dev.lxqtpr.linda.restapi.services;
 
 import dev.lxqtpr.linda.restapi.authentication.CustomUserDetails;
 import dev.lxqtpr.linda.restapi.core.exceptions.ResourceNotFoundException;
-import dev.lxqtpr.linda.restapi.doman.user.UserEntity;
+import dev.lxqtpr.linda.restapi.doman.user.User;
 import dev.lxqtpr.linda.restapi.doman.user.UserRepository;
 import dev.lxqtpr.linda.restapi.doman.user.UserService;
 import dev.lxqtpr.linda.restapi.doman.user.dto.EditUserDto;
@@ -45,12 +45,12 @@ class UserServiceTest {
                 .setFieldAccessLevel(PRIVATE);
     }
 
-    private static List<UserEntity> users = List.of(
-            new UserEntity(1l,"test2","123",123l),
-            new UserEntity(2l,"test3","123",123l),
-            new UserEntity(3l,"test4","123",123l)
+    private static List<User> users = List.of(
+            new User(1l,"test2","123",123l),
+            new User(2l,"test3","123",123l),
+            new User(3l,"test4","123",123l)
     );
-    private static UserEntity user = UserEntity
+    private static User user = User
             .builder()
             .id(1l)
             .telegramChatId(123l)
@@ -72,7 +72,7 @@ class UserServiceTest {
     void updateUser() {
         when(userRepository.findByUsername(user.getUsername()))
                 .thenReturn(Optional.ofNullable(user));
-        when(userRepository.save(Mockito.any(UserEntity.class)))
+        when(userRepository.save(Mockito.any(User.class)))
                 .thenReturn(user);
         var userFromService = userService.updateUser(new CustomUserDetails(user), updateUserDto);
         assertEquals(userFromService.getTelegramChatId(), updateUserDto.getTelegramChatId());

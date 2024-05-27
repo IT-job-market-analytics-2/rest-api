@@ -29,15 +29,20 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     implementation("org.flywaydb:flyway-core")
     compileOnly("org.projectlombok:lombok")
-    compileOnly("org.flywaydb:flyway-mysql")
+    implementation("org.flywaydb:flyway-mysql")
     implementation("org.modelmapper:modelmapper:3.2.0")
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("com.mysql:mysql-connector-j:8.4.0")
+    implementation("com.mysql:mysql-connector-j:8.4.0")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.assertj:assertj-core:3.25.3")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers:3.2.5")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.8")
+    testImplementation("org.testcontainers:mysql:1.19.8")
+    testImplementation("org.flywaydb:flyway-mysql")
 }
 
 tasks.withType<Test> {

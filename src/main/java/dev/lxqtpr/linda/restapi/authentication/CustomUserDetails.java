@@ -1,7 +1,6 @@
 package dev.lxqtpr.linda.restapi.authentication;
 
-import dev.lxqtpr.linda.restapi.doman.user.UserEntity;
-import dev.lxqtpr.linda.restapi.doman.user.UserRepository;
+import dev.lxqtpr.linda.restapi.doman.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +10,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
-    private final UserEntity user;
+    private final User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

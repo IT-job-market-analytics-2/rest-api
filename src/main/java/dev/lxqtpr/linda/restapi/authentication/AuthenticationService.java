@@ -4,7 +4,7 @@ import dev.lxqtpr.linda.restapi.core.exceptions.JwtException;
 import dev.lxqtpr.linda.restapi.core.exceptions.PasswordDoesNotMatchException;
 import dev.lxqtpr.linda.restapi.core.exceptions.ResourceNotFoundException;
 import dev.lxqtpr.linda.restapi.core.exceptions.UserAlreadyExistException;
-import dev.lxqtpr.linda.restapi.doman.user.UserEntity;
+import dev.lxqtpr.linda.restapi.doman.user.User;
 import dev.lxqtpr.linda.restapi.doman.user.UserRepository;
 import dev.lxqtpr.linda.restapi.doman.user.dto.CreateUserDto;
 import dev.lxqtpr.linda.restapi.doman.user.dto.LoginUserDto;
@@ -33,7 +33,7 @@ public class AuthenticationService {
 
     public ResponseUserDto registration(CreateUserDto createUserDto) {
         try {
-            var userToSave = modelMapper.map(createUserDto, UserEntity.class);
+            var userToSave = modelMapper.map(createUserDto, User.class);
 
             userToSave.setPassword(passwordEncoder.encode(createUserDto.getPassword()));
 

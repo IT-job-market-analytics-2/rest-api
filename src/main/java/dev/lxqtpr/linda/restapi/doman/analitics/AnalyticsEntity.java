@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @Table(name = "vacancy_analytics")
-public class VacancyAnalyticsEntity {
+public class AnalyticsEntity {
 
     @Id
     private Long id;

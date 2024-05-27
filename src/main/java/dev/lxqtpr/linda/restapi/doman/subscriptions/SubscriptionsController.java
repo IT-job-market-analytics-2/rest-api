@@ -15,7 +15,7 @@ public class SubscriptionsController {
     private final SubscriptionsService subscriptionsService;
     private final SecurityService securityService;
 
-    @GetMapping("/subscriptions")
+    @GetMapping
     public List<ResponseSubscriptionsDto> getUserSubscriptions(Authentication authentication){
         var currentUser = securityService.convertAuthentication(authentication);
         return subscriptionsService.getUserSubscriptions(currentUser.getUserId());
