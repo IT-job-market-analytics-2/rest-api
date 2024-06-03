@@ -9,6 +9,7 @@ import dev.lxqtpr.linda.restapi.doman.user.UserRepository;
 import dev.lxqtpr.linda.restapi.doman.user.dto.CreateUserDto;
 import dev.lxqtpr.linda.restapi.doman.user.dto.LoginUserDto;
 import dev.lxqtpr.linda.restapi.doman.user.dto.ResponseUserDto;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +21,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class AuthenticationService {
     private final UserRepository userRepository;
@@ -30,6 +32,17 @@ public class AuthenticationService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final JwtTokenService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final AtomicInteger registeredUser = new AtomicInteger(0);
+
+    public AuthenticationService(UserRepository userRepository, ModelMapper modelMapper, BCryptPasswordEncoder passwordEncoder, JwtTokenService jwtService, AuthenticationManager authenticationManager, MeterRegistry meterRegistry) {
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+        meterRegistry.gauge("registeredUsers", registeredUser);
+    }
+
 
     public ResponseUserDto registration(CreateUserDto createUserDto) {
         try {
@@ -41,7 +54,7 @@ public class AuthenticationService {
 
             res.setAccessToken(jwtService.generateAccessToken(createUserDto.getUsername()));
             res.setRefreshToken(jwtService.generateRefreshToken(createUserDto.getUsername()));
-
+            registeredUser.incrementAndGet();
             return res;
         }
         catch (DbActionExecutionException e){

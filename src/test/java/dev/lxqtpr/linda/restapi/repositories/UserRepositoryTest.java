@@ -39,13 +39,13 @@ public class UserRepositoryTest {
     @Autowired
     private SubscriptionRepository subscriptionRepository;
 
-    private List<User> users = List.of(
+    private final List<User> users = List.of(
             new User(null,"test2","123", 123L),
             new User(null,"test3","123", 123L),
             new User(null,"test4","123", 123L)
     );
 
-    private List<SubscriptionEntity> subscriptions = List.of(
+    private final List<SubscriptionEntity> subscriptions = List.of(
             new SubscriptionEntity(null, null, "Java"),
             new SubscriptionEntity(null, null, "Java"),
             new SubscriptionEntity(null, null, "Java")
