@@ -27,6 +27,10 @@ import java.util.List;
 public class SecurityConfig {
     private static final String[] WHITE_LIST_URL = {
             "/auth/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui/index.html",
+            "/actuator/**"
     };
     private final JwtTokenFilter jwtFilter;
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
@@ -40,7 +44,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth ->
                             auth.requestMatchers(WHITE_LIST_URL).permitAll()
                                     .anyRequest()
-                                    .permitAll()
+                                    .authenticated()
                 )
                 .exceptionHandling(exceptionHandler ->
                         exceptionHandler.authenticationEntryPoint(customAuthenticationEntryPoint)

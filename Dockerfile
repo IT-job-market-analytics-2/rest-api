@@ -1,9 +1,9 @@
-FROM eclipse-temurin:21-jdk-alpine AS builder
-WORKDIR /root
-COPY . .
-RUN ./gradlew bootJar -x test
+FROM gradle:latest as builder
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle build --no-daemon -x test
 
 FROM eclipse-temurin:21-jre-alpine
-WORKDIR /app
-COPY --from=builder /root/build/libs/*.jar app.jar
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+COPY --from=builder /home/gradle/src/build/libs/*.jar /app/application.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app/application.jar"]
